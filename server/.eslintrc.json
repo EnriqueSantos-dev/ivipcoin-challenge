@@ -2,5 +2,25 @@
 	"root": true,
 	"extends": [
 		"@rocketseat/eslint-config/node"
-	]
+	],
+	"plugins": ["simple-import-sort"],
+	"rules": {
+		"no-useless-constructor": "off",
+		"simple-import-sort/exports": "error",
+		"simple-import-sort/imports": ["error", {
+			"groups": [
+				["^\\u0000", "^@?\\w"],
+				["^node:"],
+				["^@/controllers"],
+				["^@/entities"],
+				["^@/repositories"],
+				["^@/services"],
+				["^@/routes"],
+				["^@/middlewares"],
+				["^@/config"],
+				["^@/utils"],
+				["^@/helpers"]
+			]
+		}]
+	}
 }
