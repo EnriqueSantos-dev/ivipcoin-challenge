@@ -1,8 +1,12 @@
 import { Todo, TodoProps } from '@/entities/todo/todo.entity'
 
 export abstract class TodoMapper {
-	static toEntity(data: TodoProps): Todo {
-		return new Todo(data)
+	static toEntity(data: Required<TodoProps>): Todo {
+		return new Todo({
+			...data,
+			createdAt: new Date(data.createdAt),
+			updatedAt: new Date(data.updatedAt),
+		})
 	}
 
 	static toView(todo: Todo) {

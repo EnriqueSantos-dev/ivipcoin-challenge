@@ -54,7 +54,7 @@ export class AceBaseTodoRepository implements TodoRepository {
 		return {
 			todos:
 				todosDb?.map((todoDb) =>
-					TodoMapper.toEntity(todoDb.val() as TodoProps),
+					TodoMapper.toEntity(todoDb.val() as Required<TodoProps>),
 				) ?? [],
 			paginationInfo,
 		}
@@ -65,7 +65,7 @@ export class AceBaseTodoRepository implements TodoRepository {
 
 		if (!todoDb.exists()) return null
 
-		const todoData = todoDb.val<TodoProps>()
+		const todoData = todoDb.val<Required<TodoProps>>()
 		return todoData ? TodoMapper.toEntity(todoData) : null
 	}
 
@@ -80,7 +80,11 @@ export class AceBaseTodoRepository implements TodoRepository {
 
 	async update(todo: Todo, data: UpdateTodoDTO): Promise<Todo> {
 		todo.updateAll(data)
-		await this.aceBaseClient.ref(`todos/${todo.userId}/${todo.id}`).update(todo)
+
+		await this.aceBaseClient
+			.ref(`todos/${todo.userId}/${todo.id}`)
+			.update(TodoMapper.toPersistence(todo))
+
 		return todo
 	}
 
@@ -94,7 +98,9 @@ export class AceBaseTodoRepository implements TodoRepository {
 		if (!todo) throw new TodoNotFoundError()
 
 		todo.toggleCompleted()
-		await this.aceBaseClient.ref(`todos/${userId}/${id}`).update(todo)
+		await this.aceBaseClient
+			.ref(`todos/${userId}/${id}`)
+			.update(TodoMapper.toPersistence(todo))
 
 		return todo
 	}
