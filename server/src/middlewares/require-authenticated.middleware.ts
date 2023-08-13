@@ -3,9 +3,11 @@ import jwt from 'jsonwebtoken'
 
 import { env } from '@/config/env'
 
+import { ForbiddenError, UnauthorizedError } from '@/helpers/http-error'
+
 export async function requireAuthenticated(
 	req: Request,
-	res: Response,
+	_res: Response,
 	next: NextFunction,
 ) {
 	try {
@@ -13,22 +15,12 @@ export async function requireAuthenticated(
 		const hasAuthorizationHeader =
 			'Authorization' in headers || 'authorization' in headers
 
-		if (!hasAuthorizationHeader) {
-			return res.status(401).json({
-				status: 'error',
-				message: 'Authorization header not found',
-				error: 'Unauthorized',
-			})
-		}
+		if (!hasAuthorizationHeader)
+			throw new UnauthorizedError('Authorization header not found')
 
 		const token = req.headers.authorization?.split(' ')[1]
 
-		if (!token)
-			return res.status(401).json({
-				status: 'error',
-				message: 'No Token Provider',
-				error: 'Unauthorized',
-			})
+		if (!token) throw new UnauthorizedError('Token Not Provided')
 
 		const isValidToken = jwt.verify(token, env.jwt.secret) as {
 			sub: string
@@ -38,8 +30,6 @@ export async function requireAuthenticated(
 		req.user = { id: isValidToken.sub, email: isValidToken.email }
 		next()
 	} catch (error) {
-		return res
-			.status(403)
-			.json({ status: 'error', message: 'Invalid Token', error: 'Forbidden' })
+		throw new ForbiddenError('Invalid Token')
 	}
 }
