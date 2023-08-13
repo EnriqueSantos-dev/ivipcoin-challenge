@@ -26,4 +26,8 @@ export class AuthController {
 
 		return response.status(200).json({ access_token: token })
 	}
+
+	async verifyToken(request: Request, response: Response) {
+		return response.status(204).end()
+	}
 }
