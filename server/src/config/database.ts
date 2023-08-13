@@ -4,7 +4,7 @@ import { env } from './env'
 
 export const database = new AceBase(env.databaseName as string, {
 	storage: {
-		path: './database',
+		path: '.acebase',
 	},
 	logLevel: 'log',
 })
