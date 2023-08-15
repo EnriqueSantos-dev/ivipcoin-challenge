@@ -22,7 +22,7 @@ O back-end deve ser desenvolvido em Node.js, TypeScript, Banco de Dados Acebasse
 - [✅] Busca de tarefas.
 
 ## Demonstração
-[https://ivipcoin-challenge-eosin.vercel.app](https://ivipcoin-challenge-eosin.vercel.app/)
+[https://ivipcoin-challenge-qdfp.vercel.app](https://ivipcoin-challenge-qdfp.vercel.app)
 
 ## Como rodar o projeto
 
