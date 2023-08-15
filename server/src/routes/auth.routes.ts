@@ -25,5 +25,8 @@ authRoutes.post('/login', (req, res) => authController.login(req, res))
 authRoutes.post('/verify-token', requireAuthenticated, (req, res) =>
 	authController.verifyToken(req, res),
 )
+authRoutes.get('/profile', requireAuthenticated, (req, res) =>
+	authController.getProfile(req, res),
+)
 
 export { authRoutes }
