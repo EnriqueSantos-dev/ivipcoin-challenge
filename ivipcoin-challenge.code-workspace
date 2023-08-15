@@ -1,0 +1,15 @@
+{
+  "folders": [
+    {
+      "name": "react",
+      "path": "./web"
+    },
+    {
+      "name": "server",
+      "path": "./server"
+    }
+  ],
+  "settings": {
+    "cSpell.words": ["middlewares"]
+  }
+}
