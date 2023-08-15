@@ -14,7 +14,7 @@ type TodosListProps = {
   isError: boolean;
 };
 
-export function TodosList({ todos, isLoading }: TodosListProps) {
+export function TodosList({ todos, isLoading, isError }: TodosListProps) {
   const search = useFilters((state) => state.search);
 
   const filteredTodos = useMemo(
@@ -48,6 +48,23 @@ export function TodosList({ todos, isLoading }: TodosListProps) {
           </Box>
           <Typography variant="body1" color="text.secondary">
             Nenhuma tarefa encontrada
+          </Typography>
+        </Stack>
+      )}
+      {isError && (
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          height="100%"
+          useFlexGap
+          gap={3}
+        >
+          <Box sx={{ width: 250, height: 250 }}>
+            <img src="/error.svg" alt="erro ao carregar as tarefas" />
+          </Box>
+          <Typography variant="body1" color="text.secondary">
+            Ocorreu um erro ao carregar as tarefas
           </Typography>
         </Stack>
       )}
