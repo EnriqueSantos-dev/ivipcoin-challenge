@@ -3,9 +3,6 @@ import { AceBase } from 'acebase'
 import { env } from './env'
 
 export const database = new AceBase(env.databaseName as string, {
-	storage: {
-		path: '.acebase',
-	},
 	logLevel: 'log',
 })
 
