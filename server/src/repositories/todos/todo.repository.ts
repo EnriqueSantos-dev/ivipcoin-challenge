@@ -28,6 +28,7 @@ export type GetAllTodoOutPutDTO = {
 		previousPage: number | null
 		page: number
 		count: number
+		allTodosCount: number
 	}
 }
 

@@ -44,6 +44,7 @@ export class AceBaseTodoRepository implements TodoRepository {
 		const paginationInfo = {
 			totalPages,
 			count,
+			allTodosCount,
 			page,
 			hasNextPage,
 			nextPage,
