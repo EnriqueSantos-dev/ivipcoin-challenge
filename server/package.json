@@ -4,27 +4,15 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "node dist/src/server.js",
+		"start": "node dist/server.js",
 		"dev": "tsx watch src/server.ts",
-		"build": "tsc",
+		"build": "tsc && tsc-alias",
 		"lint": "eslint --fix './src/**/*.ts'"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"devDependencies": {
-		"@types/bcryptjs": "^2.4.2",
-		"@types/cors": "^2.8.13",
-		"@types/dotenv-safe": "^8.1.2",
-		"@types/express": "^4.17.17",
-		"@types/jsonwebtoken": "^9.0.2",
-		"@types/node": "^20.4.10",
-		"@typescript-eslint/eslint-plugin": "^5.52.0",
-		"eslint-plugin-simple-import-sort": "^10.0.0",
-		"typescript": "^5.1.6"
-	},
 	"dependencies": {
-		"@rocketseat/eslint-config": "^2.1.0",
 		"acebase": "^1.29.2",
 		"bcryptjs": "^2.4.3",
 		"cors": "^2.8.5",
@@ -34,5 +22,18 @@
 		"jsonwebtoken": "^9.0.1",
 		"tsx": "^3.12.7",
 		"zod": "^3.21.4"
+	},
+	"devDependencies": {
+		"@rocketseat/eslint-config": "^2.1.0",
+		"@types/bcryptjs": "^2.4.2",
+		"@types/cors": "^2.8.13",
+		"@types/dotenv-safe": "^8.1.2",
+		"@types/express": "^4.17.17",
+		"@types/jsonwebtoken": "^9.0.2",
+		"@types/node": "^20.4.10",
+		"@typescript-eslint/eslint-plugin": "^5.52.0",
+		"eslint-plugin-simple-import-sort": "^10.0.0",
+		"typescript": "^5.1.6",
+		"tsc-alias": "^1.8.7"
 	}
 }
