@@ -89,9 +89,7 @@ export default function RegisterPage() {
               <TextField
                 margin="normal"
                 fullWidth
-                id="email"
                 label="Nome"
-                autoComplete="email"
                 autoFocus
                 onChange={field.onChange}
                 value={field.value}
@@ -107,10 +105,8 @@ export default function RegisterPage() {
               <TextField
                 margin="normal"
                 fullWidth
-                id="email"
                 label="Email"
                 autoComplete="email"
-                autoFocus
                 onChange={field.onChange}
                 value={field.value}
                 error={!!fieldState.error?.message}
@@ -127,7 +123,6 @@ export default function RegisterPage() {
                 fullWidth
                 label="Senha"
                 type="password"
-                id="password"
                 autoComplete="current-password"
                 onChange={field.onChange}
                 value={field.value}
