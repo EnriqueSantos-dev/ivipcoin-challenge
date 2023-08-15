@@ -15,7 +15,9 @@ export default function PrivateLayout() {
   const { setUser } = useAuthStoreActions();
 
   useEffect(() => {
-    setUser(user);
+    if (user) {
+      setUser(user);
+    }
   }, [user, setUser]);
 
   return (

@@ -16,8 +16,8 @@ import { useAuthStore } from "@/hooks";
 import { removeAccessToken } from "@/helpers/auth-local-storage";
 
 const extractInitials = (name: string) => {
-  const [firstName, lastName] = name.split(" ");
-  return `${firstName[0]}${lastName[0]}`;
+  const extractedName = name.split(" ").splice(0, 2);
+  return extractedName.map((name) => name[0]).join("");
 };
 
 export function NavBar() {
