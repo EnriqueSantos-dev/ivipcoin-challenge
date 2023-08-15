@@ -44,4 +44,12 @@ export class UsersService {
 
 		return user
 	}
+
+	async getProfile(id: string) {
+		const user = await this.usersRepository.getUserById(id)
+
+		if (!user) throw new UserNotFoundError()
+
+		return UserMapper.toView(user)
+	}
 }
