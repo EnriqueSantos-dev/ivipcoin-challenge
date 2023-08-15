@@ -14,7 +14,7 @@ export class TodosController {
 		const getAllTodoSchema = z.object({
 			page: z.coerce.number().int().min(1).optional(),
 			limit: z.coerce.number().int().min(1).max(50).optional(),
-			userId: z.string().min(1),
+			userId: z.string().uuid(),
 		})
 
 		const resultParsed = getAllTodoSchema.safeParse({
@@ -38,10 +38,10 @@ export class TodosController {
 
 	async create(req: Request, res: Response) {
 		const createTodoSchema = z.object({
-			title: z.string().min(3).max(255),
-			description: z.string().min(3).max(255),
+			title: z.string().min(5).max(50),
+			description: z.string().min(5).max(100),
 			completed: z.boolean(),
-			userId: z.string().min(1),
+			userId: z.string().uuid(),
 		})
 
 		const resultParsed = createTodoSchema.safeParse({
@@ -67,10 +67,10 @@ export class TodosController {
 	async update(req: Request, res: Response) {
 		const updateTodoSchema = z.object({
 			id: z.string().uuid(),
-			title: z.string().min(3).max(255).optional(),
-			description: z.string().min(3).max(255).optional(),
+			title: z.string().min(5).max(50).optional(),
+			description: z.string().min(5).max(100).optional(),
 			completed: z.boolean().optional(),
-			userId: z.string().min(1),
+			userId: z.string().uuid(),
 		})
 
 		const resultParsed = updateTodoSchema.safeParse({
@@ -90,7 +90,7 @@ export class TodosController {
 	async delete(req: Request, res: Response) {
 		const deleteTodoSchema = z.object({
 			id: z.string().uuid(),
-			userId: z.string().min(1),
+			userId: z.string().uuid(),
 		})
 
 		const resultParsed = deleteTodoSchema.safeParse({
@@ -110,7 +110,7 @@ export class TodosController {
 	async toggleCompleted(req: Request, res: Response) {
 		const toggleCompletedSchema = z.object({
 			id: z.string().uuid(),
-			userId: z.string().min(1),
+			userId: z.string().uuid(),
 		})
 
 		const resultParsed = toggleCompletedSchema.safeParse({
